@@ -86,6 +86,8 @@ public class LinkedList<E extends Comparable<E>>
         {
             newNode.next = first;
             first = newNode;
+            size++;
+            return true;
         }
 
         int i = 0;

@@ -21,6 +21,19 @@ public class LinkedListTest
         printList("Before sorting: ");
         intList.sortBubble();
         printList("After sorting:  ");
+
+        // - Adding
+        System.out.println(intList.add(0, 16) ? "16 added successfully" : "16 not added");
+        System.out.println(intList.add(3, 64) ? "64 added successfully" : "64 not added");
+        System.out.println(intList.add(15, 32) ? "32 added successfully" : "32 not added");
+        System.out.println(intList.add(-5, 8) ? "8 added successfully" : "8 not added");
+        printList("After adding the elements: ");
+
+        // - Setting
+        // TODO: Implement setting test
+
+        // - Removing
+        // TODO: Implement removing test
     }
 
     private void createList(int size)
@@ -38,11 +51,14 @@ public class LinkedListTest
 
     private void printList(String header)
     {
+        System.out.println();
         System.out.println(header);
         for (Integer data : intList)
         {
             System.out.print(data.toString() + ' ');
         }
+        System.out.println();
+        System.out.println("Total: " + intList.size());
         System.out.println();
     }
 
