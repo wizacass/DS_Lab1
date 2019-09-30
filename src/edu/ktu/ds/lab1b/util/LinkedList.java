@@ -17,8 +17,8 @@ import java.util.Comparator;
 /**
  * Koreguota 2015-09-18
  *
- * @author Aleksis
  * @param <E> Sąrašo elementų tipas (klasė)
+ * @author Aleksis
  */
 public class LinkedList<E extends Comparable<E>>
         implements List<E>, Iterable<E>, Cloneable
@@ -79,11 +79,33 @@ public class LinkedList<E extends Comparable<E>>
         {
             return false;
         }
-        throw new UnsupportedOperationException("Studentams reikia realizuoti add(int k, E e)");
+
+        var newNode = new Node<E>(e, null);
+
+        if (k == 0)
+        {
+            newNode.next = first;
+            first = newNode;
+        }
+
+        int i = 0;
+        for (var currentNode = first; currentNode != null; currentNode = currentNode.next)
+        {
+            if (i == k - 1)
+            {
+                newNode.next = currentNode.next;
+                currentNode.next = newNode;
+                size++;
+                return true;
+            }
+
+            i++;
+        }
+
+        return false;
     }
 
     /**
-     *
      * @return sąrašo dydis (elementų kiekis)
      */
     @Override
@@ -144,13 +166,13 @@ public class LinkedList<E extends Comparable<E>>
     {
         if (k < 0 || k >= size)
         {
-            throw new IndexOutOfBoundsException(String.format("Linked list has only %d elements!", size ));
+            throw new IndexOutOfBoundsException(String.format("Linked list has only %d elements!", size));
         }
 
         int i = 0;
         for (var currentNode = first; currentNode != null; currentNode = currentNode.next)
         {
-            if(k == i)
+            if (k == i)
             {
                 var currentValue = currentNode.element;
                 currentNode.element = e;
@@ -195,7 +217,7 @@ public class LinkedList<E extends Comparable<E>>
     {
         if (k < 0 || k >= size)
         {
-            throw new IndexOutOfBoundsException(String.format("Linked list has only %d elements!", size ));
+            throw new IndexOutOfBoundsException(String.format("Linked list has only %d elements!", size));
         }
 
         if (k == 0)
@@ -210,11 +232,11 @@ public class LinkedList<E extends Comparable<E>>
         int i = 0;
         for (var currentNode = first; currentNode != null; currentNode = currentNode.next)
         {
-            if(k == i + 1)
+            if (k == i + 1)
             {
                 var element = currentNode.next.element;
                 currentNode.next = currentNode.next.next;
-                size --;
+                size--;
 
                 return element;
             }
@@ -226,7 +248,6 @@ public class LinkedList<E extends Comparable<E>>
     }
 
     /**
-     *
      * @return sąrašo kopiją
      */
     @Override
@@ -301,7 +322,8 @@ public class LinkedList<E extends Comparable<E>>
         Object[] a = this.toArray();
         Arrays.sort(a, (Comparator) c);
         int i = 0;
-        for (Node<E> e1 = first; e1 != null; e1 = e1.next) {
+        for (Node<E> e1 = first; e1 != null; e1 = e1.next)
+        {
             e1.element = (E) a[i++];
         }
     }
