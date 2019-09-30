@@ -142,6 +142,11 @@ public class LinkedList<E extends Comparable<E>>
     @Override
     public E set(int k, E e)
     {
+        if (k > size)
+        {
+            throw new IndexOutOfBoundsException(String.format("Linked list has only %d elements!", size ));
+        }
+
         int i = 0;
         for (var currentNode = first; currentNode != null; currentNode = currentNode.next)
         {
@@ -155,7 +160,8 @@ public class LinkedList<E extends Comparable<E>>
 
             i++;
         }
-        throw new IndexOutOfBoundsException(String.format("Linked list has only %d elements!", i ));
+
+        return null;
     }
 
     /**
@@ -215,7 +221,7 @@ public class LinkedList<E extends Comparable<E>>
 
             i++;
         }
-        
+
         return null;
     }
 
