@@ -20,16 +20,14 @@ public class Phone implements Parsable<Phone>
     private double _makeYear;
     private double _price;
     private double _diagonalScreenSize;
-    private double _cameraResolution;
     private Boolean _hasHeadphoneJack;
-    private Boolean _hasUsbC;
 
     public Phone() { }
 
     public Phone(
             String manufacturer, String model, int batteryCapacity,
             double makeYear, double price, double diagonalScreenSize,
-            double cameraResolution, Boolean hasHeadphoneJack, Boolean hasUsbC)
+            Boolean hasHeadphoneJack)
     {
         this._manufacturer = manufacturer;
         this._model = model;
@@ -37,9 +35,7 @@ public class Phone implements Parsable<Phone>
         this._makeYear = makeYear;
         this._price = price;
         this._diagonalScreenSize = diagonalScreenSize;
-        this._cameraResolution = cameraResolution;
         this._hasHeadphoneJack = hasHeadphoneJack;
-        this._hasUsbC = hasUsbC;
     }
 
     public static int getMinYear()
@@ -87,19 +83,9 @@ public class Phone implements Parsable<Phone>
         return _diagonalScreenSize;
     }
 
-    public double getCameraResolution()
-    {
-        return _cameraResolution;
-    }
-
     public Boolean getHasHeadphoneJack()
     {
         return _hasHeadphoneJack;
-    }
-
-    public Boolean getHasUsbC()
-    {
-        return _hasUsbC;
     }
 
     public void setPrice(double price)
@@ -119,9 +105,7 @@ public class Phone implements Parsable<Phone>
             _makeYear = ed.nextDouble();
             _price = ed.nextDouble();
             _diagonalScreenSize = ed.nextDouble();
-            _cameraResolution = ed.nextDouble();
             _hasHeadphoneJack = ed.nextBoolean();
-            _hasUsbC = ed.nextBoolean();
             setPrice(ed.nextDouble());
         }
         catch (InputMismatchException e)
@@ -135,8 +119,15 @@ public class Phone implements Parsable<Phone>
     }
 
     @Override
-    public int compareTo(Phone o)
+    public int compareTo(Phone other)
     {
-        return 0;
+        if (this._price == other._price)
+        {
+            if (this._makeYear == other._makeYear) { return 0; }
+            else if (this._makeYear > other._makeYear) { return 1; }
+            else return -1;
+        }
+        else if (this._price < other._price) { return 1; }
+        else return -1;
     }
 }
