@@ -8,10 +8,13 @@ import java.util.Random;
 public class LinkedListTest
 {
     private LinkedList<Integer> intList;
+    private Random rnd;
 
     private LinkedListTest()
     {
         intList = new LinkedList<Integer>();
+        rnd = new Random();
+        rnd.setSeed(2017);
     }
 
     private void run()
@@ -21,7 +24,6 @@ public class LinkedListTest
         System.out.println();
         printList("Before sorting:");
 
-
         // - Adding
         System.out.println(intList.add(0, 16) ? "16 added successfully" : "16 not added");
         System.out.println(intList.add(3, 64) ? "64 added successfully" : "64 not added");
@@ -30,7 +32,31 @@ public class LinkedListTest
         printList("After adding the elements:");
 
         // - Setting
-        // TODO: Implement setting test
+        Integer oldVal = intList.set(0, 1);
+        System.out.println(oldVal + " set at index 0 set to 1");
+
+        for (int i = 0; i < 5; i ++)
+        {
+            boolean success = true;
+            int position = rnd.nextInt(16);
+            int newVal = rnd.nextInt(1024);
+
+            try
+            {
+                oldVal = intList.set(position, newVal);
+            }
+            catch (Exception ex)
+            {
+                System.out.println("Cannot set index " + position + ". " + ex.getMessage());
+                success = false;
+            }
+
+            if (success)
+            {
+                System.out.println(oldVal + " set at index " + position + " set to " + newVal);
+            }
+        }
+        printList("After setting:");
 
         // - Removing
         // TODO: Implement removing test
@@ -41,12 +67,10 @@ public class LinkedListTest
 
     private void createList(int size)
     {
-        Random rnd = new Random();
-        rnd.setSeed(2017);
         for (int i = 0; i < size; i++)
         {
             Integer number = rnd.nextInt(2048);
-            //System.out.println("Adding " + number + " to the list");
+            System.out.println("Adding " + number + " to the list");
 
             intList.add(number);
         }
