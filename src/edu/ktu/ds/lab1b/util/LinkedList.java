@@ -187,7 +187,36 @@ public class LinkedList<E extends Comparable<E>>
     @Override
     public E remove(int k)
     {
-        throw new UnsupportedOperationException("Studentams reikia realizuoti remove(int k)");
+        if (k > size)
+        {
+            throw new IndexOutOfBoundsException(String.format("Linked list has only %d elements!", size ));
+        }
+
+        if (k == 0)
+        {
+            var element = first.element;
+            first = first.next;
+            size--;
+
+            return element;
+        }
+
+        int i = 0;
+        for (var currentNode = first; currentNode != null; currentNode = currentNode.next)
+        {
+            if(k == i + 1)
+            {
+                var element = currentNode.next.element;
+                currentNode.next = currentNode.next.next;
+                size --;
+
+                return element;
+            }
+
+            i++;
+        }
+        
+        return null;
     }
 
     /**
