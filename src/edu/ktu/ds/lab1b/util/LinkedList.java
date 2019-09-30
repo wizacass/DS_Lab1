@@ -331,7 +331,7 @@ public class LinkedList<E extends Comparable<E>>
     /**
      * Sąrašo rikiavimas burbuliuko metodu
      */
-    public void sortBuble()
+    public void sortBubble()
     {
         if (first == null)
         {
@@ -364,7 +364,7 @@ public class LinkedList<E extends Comparable<E>>
      *
      * @param c komparatorius
      */
-    public void sortBuble(Comparator<? super E> c)
+    public void sortBubble(Comparator<? super E> c)
     {
         if (first == null)
         {
@@ -372,7 +372,7 @@ public class LinkedList<E extends Comparable<E>>
         }
         for (; ; )
         {
-            boolean jauGerai = true;
+            boolean sorted = true;
             Node<E> e1 = first;
             for (Node<E> e2 = first.next; e2 != null; e2 = e2.next)
             {
@@ -381,11 +381,11 @@ public class LinkedList<E extends Comparable<E>>
                     E t = e1.element;
                     e1.element = e2.element;
                     e2.element = t;
-                    jauGerai = false;
+                    sorted = false;
                 }
                 e1 = e2;
             }
-            if (jauGerai)
+            if (sorted)
             {
                 return;
             }

@@ -153,16 +153,16 @@ public class ManualTest
         market.allCars.load("ban.txt");
         Ks.oun("========" + market.allCars.get(0));
         market.allCars.println("Bandomasis rinkinys");
-        market.allCars.sortBuble(Car.byMakeAndModel);
+        market.allCars.sortBubble(Car.byMakeAndModel);
         market.allCars.println("Rūšiavimas pagal Markę ir Modelį");
-        market.allCars.sortBuble(Car.byPrice);
+        market.allCars.sortBubble(Car.byPrice);
         market.allCars.println("Rūšiavimas pagal kainą");
-        market.allCars.sortBuble(Car.byYearAndPrice);
+        market.allCars.sortBubble(Car.byYearAndPrice);
         market.allCars.println("Rūšiavimas pagal Metus ir Kainą");
-        market.allCars.sortBuble(byMileage);
-        market.allCars.sortBuble((a, b) -> Integer.compare(a.getMileage(), b.getMileage()));
+        market.allCars.sortBubble(byMileage);
+        market.allCars.sortBubble((a, b) -> Integer.compare(a.getMileage(), b.getMileage()));
         market.allCars.println("Rūšiavimas pagal Ridą");
-        market.allCars.sortBuble();
+        market.allCars.sortBubble();
         market.allCars.println("Rūšiavimas pagal compareTo - Kainą");
     }
 

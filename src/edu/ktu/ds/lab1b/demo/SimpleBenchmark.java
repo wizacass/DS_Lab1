@@ -75,9 +75,9 @@ public class SimpleBenchmark
         long t3 = System.nanoTime();
         carSeries2.sortSystem(Car.byPrice);
         long t4 = System.nanoTime();
-        carSeries3.sortBuble();
+        carSeries3.sortBubble();
         long t5 = System.nanoTime();
-        carSeries4.sortBuble(Car.byPrice);
+        carSeries4.sortBubble(Car.byPrice);
         long t6 = System.nanoTime();
         Ks.ouf("%7d %7.4f %7.4f %7.4f %7.4f %7.4f %7.4f \n", elementCount,
                 (t1 - t0) / 1e9, (t2 - t1) / 1e9, (t3 - t2) / 1e9,
