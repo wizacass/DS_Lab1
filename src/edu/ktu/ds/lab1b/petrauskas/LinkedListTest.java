@@ -12,14 +12,14 @@ public class LinkedListTest
 
     private LinkedListTest()
     {
-        intList = new LinkedList<Integer>();
+        intList = new LinkedList<>();
         rnd = new Random();
         rnd.setSeed(2017);
     }
 
     private void run()
     {
-        createList(10);
+        createList(rnd.nextInt(20));
 
         System.out.println();
         printList("Before sorting:");
