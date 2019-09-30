@@ -142,7 +142,7 @@ public class LinkedList<E extends Comparable<E>>
     @Override
     public E set(int k, E e)
     {
-        if (k > size)
+        if (k < 0 || k >= size)
         {
             throw new IndexOutOfBoundsException(String.format("Linked list has only %d elements!", size ));
         }
@@ -193,7 +193,7 @@ public class LinkedList<E extends Comparable<E>>
     @Override
     public E remove(int k)
     {
-        if (k > size)
+        if (k < 0 || k >= size)
         {
             throw new IndexOutOfBoundsException(String.format("Linked list has only %d elements!", size ));
         }
