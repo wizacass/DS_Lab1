@@ -142,7 +142,20 @@ public class LinkedList<E extends Comparable<E>>
     @Override
     public E set(int k, E e)
     {
-        throw new UnsupportedOperationException("Studentams reikia realizuoti set(int k, E e)");
+        int i = 0;
+        for (var currentNode = first; currentNode != null; currentNode = currentNode.next)
+        {
+            if(k == i)
+            {
+                var currentValue = currentNode.element;
+                currentNode.element = e;
+
+                return currentValue;
+            }
+
+            i++;
+        }
+        throw new IndexOutOfBoundsException(String.format("Linked list has only %d elements!", i ));
     }
 
     /**

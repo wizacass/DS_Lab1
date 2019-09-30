@@ -34,13 +34,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/edu/ktu/ds/lab1b/util/LinkedList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="497">
-              <caret line="145" column="5" lean-forward="true" selection-start-line="145" selection-start-column="5" selection-end-line="145" selection-end-column="5" />
+            <state relative-caret-position="615">
+              <caret line="157" column="88" lean-forward="true" selection-start-line="157" selection-start-column="88" selection-end-line="157" selection-end-column="88" />
               <folding>
                 <element signature="e#2405#2406#0" expanded="true" />
                 <element signature="e#2587#2588#0" expanded="true" />
-                <element signature="e#4107#4108#0" expanded="true" />
-                <element signature="e#7783#7784#0" expanded="true" />
+                <element signature="e#4445#4446#0" expanded="true" />
+                <element signature="e#8121#8122#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -205,7 +205,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569825237971" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569825459757" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -282,12 +282,12 @@
       <option name="presentableId" value="Default" />
       <updated>1569219242164</updated>
       <workItem from="1569219248252" duration="4269000" />
-      <workItem from="1569823694307" duration="1222000" />
+      <workItem from="1569823694307" duration="1429000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5491000" />
+    <option name="totallyTimeSpent" value="5698000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -432,13 +432,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/ktu/ds/lab1b/util/LinkedList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="145" column="5" lean-forward="true" selection-start-line="145" selection-start-column="5" selection-end-line="145" selection-end-column="5" />
+        <state relative-caret-position="615">
+          <caret line="157" column="88" lean-forward="true" selection-start-line="157" selection-start-column="88" selection-end-line="157" selection-end-column="88" />
           <folding>
             <element signature="e#2405#2406#0" expanded="true" />
             <element signature="e#2587#2588#0" expanded="true" />
-            <element signature="e#4107#4108#0" expanded="true" />
-            <element signature="e#7783#7784#0" expanded="true" />
+            <element signature="e#4445#4446#0" expanded="true" />
+            <element signature="e#8121#8122#0" expanded="true" />
           </folding>
         </state>
       </provider>
