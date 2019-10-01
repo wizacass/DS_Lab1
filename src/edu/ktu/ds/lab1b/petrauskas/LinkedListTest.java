@@ -25,15 +25,15 @@ public class LinkedListTest
         printList("Before sorting:");
 
         // - Adding
-        System.out.println(intList.add(0, 16) ? "16 added successfully" : "16 not added");
-        System.out.println(intList.add(3, 64) ? "64 added successfully" : "64 not added");
-        System.out.println(intList.add(15, 32) ? "32 added successfully" : "32 not added");
-        System.out.println(intList.add(-5, 8) ? "8 added successfully" : "8 not added");
+        System.out.println(intList.add(0, 16) ? "16 added successfully." : "16 not added.");
+        System.out.println(intList.add(3, 64) ? "64 added successfully." : "64 not added.");
+        System.out.println(intList.add(15, 32) ? "32 added successfully." : "32 not added.");
+        System.out.println(intList.add(-5, 8) ? "8 added successfully." : "8 not added.");
         printList("After adding the elements:");
 
         // - Setting
         Integer oldVal = intList.set(0, 1);
-        System.out.println(oldVal + " set at index 0 set to 1");
+        System.out.printf("%d set at index 0 set to 1.%n", oldVal);
 
         for (int i = 0; i < 5; i ++)
         {
@@ -47,13 +47,13 @@ public class LinkedListTest
             }
             catch (Exception ex)
             {
-                System.out.println("Cannot set index " + position + ". " + ex.getMessage());
+                System.out.printf("Cannot set index %d. %s%n", position, ex.getMessage());
                 success = false;
             }
 
             if (success)
             {
-                System.out.println(oldVal + " set at index " + position + " set to " + newVal);
+                System.out.printf("%d at index %d set to %d.%n", oldVal, position, newVal);
             }
         }
         printList("After setting:");
@@ -77,7 +77,7 @@ public class LinkedListTest
 
             if (success)
             {
-                System.out.printf("Removed at index %d. Removed value: %d.%n", position, removedValue);
+                System.out.printf("Removed value %d at index %d.%n", removedValue, position);
             }
         }
         printList("After removing:");
@@ -91,7 +91,7 @@ public class LinkedListTest
         for (int i = 0; i < size; i++)
         {
             Integer number = rnd.nextInt(2048);
-            System.out.println("Adding " + number + " to the list");
+            System.out.printf("Added %d to the list.%n", number);
 
             intList.add(number);
         }
@@ -99,15 +99,12 @@ public class LinkedListTest
 
     private void printList(String header)
     {
-        System.out.println();
-        System.out.println(header);
+        System.out.printf("%n%s%n", header);
         for (Integer data : intList)
         {
-            System.out.print(data.toString() + ' ');
+            System.out.printf("%s ", data.toString());
         }
-        System.out.println();
-        System.out.println("Total: " + intList.size());
-        System.out.println();
+        System.out.printf("%nTotal elements: %d.%n%n", intList.size());
     }
 
     public static void main(String... args)
