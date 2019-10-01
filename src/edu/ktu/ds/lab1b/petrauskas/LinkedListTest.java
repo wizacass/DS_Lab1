@@ -59,7 +59,28 @@ public class LinkedListTest
         printList("After setting:");
 
         // - Removing
-        // TODO: Implement removing test
+        for (int i = 0; i < 3; i++)
+        {
+            boolean success = true;
+            int position = rnd.nextInt(20);
+
+            Integer removedValue = null;
+            try
+            {
+                removedValue = intList.remove(position);
+            }
+            catch (Exception ex)
+            {
+                System.out.printf("Cannot remove index %d. %s%n", position, ex.getMessage());
+                success = false;
+            }
+
+            if (success)
+            {
+                System.out.printf("Removed at index %d. Removed value: %d.%n", position, removedValue);
+            }
+        }
+        printList("After removing:");
 
         intList.sortBubble();
         printList("After sorting:");
