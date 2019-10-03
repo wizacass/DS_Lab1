@@ -97,24 +97,24 @@ public class Phone implements Parsable<Phone>
     public void parse(String dataString)
     {
         try
-        {   // ed - tai elementarūs duomenys, atskirti tarpais
-            var ed = new Scanner(dataString);
-            _manufacturer = ed.next();
-            _model = ed.next();
-            _batteryCapacity = ed.nextInt();
-            _makeYear = ed.nextDouble();
-            _price = ed.nextDouble();
-            _diagonalScreenSize = ed.nextDouble();
-            _hasHeadphoneJack = ed.nextBoolean();
-            setPrice(ed.nextDouble());
+        {
+            var data = new Scanner(dataString);
+            _manufacturer = data.next();
+            _model = data.next();
+            _batteryCapacity = data.nextInt();
+            _makeYear = data.nextDouble();
+            _price = data.nextDouble();
+            _diagonalScreenSize = data.nextDouble();
+            _hasHeadphoneJack = data.nextBoolean();
+            setPrice(data.nextDouble());
         }
         catch (InputMismatchException e)
         {
-            Ks.ern("Blogas duomenų formatas apie auto -> " + dataString);
+            Ks.ern(String.format("Invalid Phone data string -> %s", dataString));
         }
         catch (NoSuchElementException e)
         {
-            Ks.ern("Trūksta duomenų apie auto -> " + dataString);
+            Ks.ern(String.format("Missing data on Phone -> %s", dataString));
         }
     }
 
@@ -123,11 +123,9 @@ public class Phone implements Parsable<Phone>
     {
         if (this._price == other._price)
         {
-            if (this._makeYear == other._makeYear) { return 0; }
-            else if (this._makeYear > other._makeYear) { return 1; }
-            else return -1;
+            return Double.compare(this._makeYear, other._makeYear);
         }
         else if (this._price < other._price) { return 1; }
-        else return -1;
+        else { return -1; }
     }
 }
