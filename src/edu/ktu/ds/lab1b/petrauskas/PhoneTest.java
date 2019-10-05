@@ -73,6 +73,9 @@ public class PhoneTest
     {
         createPhones();
         listPhones();
+        phones.sortBubble();
+        Ks.oun(" ");
+        listPhones();
     }
 
     public static void main(String... args)

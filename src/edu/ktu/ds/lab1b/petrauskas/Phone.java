@@ -76,7 +76,7 @@ public class Phone implements Parsable<Phone>
         return _batteryCapacity;
     }
 
-    public double getMakeYear()
+    public int getMakeYear()
     {
         return _makeYear;
     }
@@ -149,12 +149,14 @@ public class Phone implements Parsable<Phone>
     @Override
     public int compareTo(Phone other)
     {
-        if (this.getPrice() == other.getPrice())
+        if (Integer.compare(this.getMakeYear(), other.getMakeYear()) == 0)
         {
-            return Double.compare(this.getMakeYear(), other.getMakeYear());
+            return Double.compare(this.getPrice(), other.getPrice());
         }
-        else if (this.getPrice() < other.getPrice()) { return 1; }
-        else { return -1; }
+        else
+        {
+            return -Integer.compare(this.getMakeYear(), other.getMakeYear());
+        }
     }
 
     @Override
