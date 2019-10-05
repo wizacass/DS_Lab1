@@ -128,4 +128,18 @@ public class Phone implements Parsable<Phone>
         else if (this._price < other._price) { return 1; }
         else { return -1; }
     }
+
+    @Override
+    public String toString()
+    {
+        return String.format("%s %s, %s, %s$, %dmAh, %sin, headphone jack: %s.",
+                _manufacturer,
+                _model,
+                _makeYear,
+                _price,
+                _batteryCapacity,
+                _diagonalScreenSize,
+                _hasHeadphoneJack ? "yes" : "no"
+        );
+    }
 }
