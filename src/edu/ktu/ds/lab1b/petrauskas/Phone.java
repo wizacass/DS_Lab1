@@ -17,16 +17,18 @@ public class Phone implements Parsable<Phone>
     private String _manufacturer;
     private String _model;
     private int _batteryCapacity;
-    private double _makeYear;
+    private int _makeYear;
     private double _price;
     private double _diagonalScreenSize;
     private Boolean _hasHeadphoneJack;
+
+    private Boolean _status;
 
     public Phone() { }
 
     public Phone(
             String manufacturer, String model, int batteryCapacity,
-            double makeYear, double price, double diagonalScreenSize,
+            int makeYear, double price, double diagonalScreenSize,
             Boolean hasHeadphoneJack)
     {
         this._manufacturer = manufacturer;
@@ -36,6 +38,12 @@ public class Phone implements Parsable<Phone>
         this._price = price;
         this._diagonalScreenSize = diagonalScreenSize;
         this._hasHeadphoneJack = hasHeadphoneJack;
+        this._status = true;
+    }
+
+    public Phone(String data)
+    {
+        parse(data);
     }
 
     public static int getMinYear()
@@ -88,6 +96,11 @@ public class Phone implements Parsable<Phone>
         return _hasHeadphoneJack;
     }
 
+    public Boolean get_status()
+    {
+        return _status;
+    }
+
     public void setPrice(double price)
     {
         this._price = price;
@@ -96,38 +109,72 @@ public class Phone implements Parsable<Phone>
     @Override
     public void parse(String dataString)
     {
+        _status = true;
         try
-        {   // ed - tai elementarūs duomenys, atskirti tarpais
-            var ed = new Scanner(dataString);
-            _manufacturer = ed.next();
-            _model = ed.next();
-            _batteryCapacity = ed.nextInt();
-            _makeYear = ed.nextDouble();
-            _price = ed.nextDouble();
-            _diagonalScreenSize = ed.nextDouble();
-            _hasHeadphoneJack = ed.nextBoolean();
-            setPrice(ed.nextDouble());
+        {
+            var data = new Scanner(dataString);
+            this._manufacturer = data.next();
+            this._model = data.next();
+            this._batteryCapacity = data.nextInt();
+            this._makeYear = data.nextInt();
+            this._price = data.nextDouble();
+            this._diagonalScreenSize = data.nextDouble();
+            var headphoneData = data.next();
+
+            if (headphoneData.equals("true"))
+            {
+                this._hasHeadphoneJack = true;
+            }
+            else if (headphoneData.equals("false"))
+            {
+                this._hasHeadphoneJack = false;
+            }
+            else
+            {
+                throw new InputMismatchException();
+            }
         }
         catch (InputMismatchException e)
         {
-            Ks.ern("Blogas duomenų formatas apie auto -> " + dataString);
+            Ks.ern(String.format("Invalid Phone data string -> %s", dataString));
+            this._status = false;
         }
         catch (NoSuchElementException e)
         {
-            Ks.ern("Trūksta duomenų apie auto -> " + dataString);
+            Ks.ern(String.format("Missing data on Phone -> %s", dataString));
+            this._status = false;
         }
     }
 
     @Override
     public int compareTo(Phone other)
     {
-        if (this._price == other._price)
+        if (this.getPrice() == other.getPrice())
         {
-            if (this._makeYear == other._makeYear) { return 0; }
-            else if (this._makeYear > other._makeYear) { return 1; }
-            else return -1;
+            return Double.compare(this.getMakeYear(), other.getMakeYear());
         }
-        else if (this._price < other._price) { return 1; }
-        else return -1;
+        else if (this.getPrice() < other.getPrice()) { return 1; }
+        else { return -1; }
+    }
+
+    @Override
+    public String toString()
+    {
+        if (this.get_status())
+        {
+            return String.format("%s %s, %s, %s$, %dmAh, %sin, headphone jack: %s.",
+                    this.getManufacturer(),
+                    this.getModel(),
+                    this.getMakeYear(),
+                    this.getPrice(),
+                    this.getBatteryCapacity(),
+                    this.getDiagonalScreenSize(),
+                    this.getHasHeadphoneJack() ? "yes" : "no"
+            );
+        }
+        else
+        {
+            return "Invalid phone object!";
+        }
     }
 }
