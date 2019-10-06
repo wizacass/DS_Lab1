@@ -1,17 +1,20 @@
-/** @author Eimutis Karčiauskas, KTU IF Programų inžinerijos katedra, 2014 09 23
- *
+/**
+ * @author Eimutis Karčiauskas, KTU IF Programų inžinerijos katedra, 2014 09 23
+ * <p>
  * Tai yra darbo su sąrašais greitaveikos tyrimo klasė.
  * Pavyzdyje pateiktas rikiavimo metodų tyrimas.
  * Tyrimo metu pateiktais metodais naudojamasi kaip šablonais,
  * išbandant įvairius rūšiavimo aspektus.
- *  IŠSIAIŠKINKITE metodų sudarymą, jų paskirtį.
- *  SUDARYKITE sąrašo peržiūros antišablono efektyvumo tyrimą.
- *  PASIRINKITE savo objektų klasę ir sudarykite jų generavimo metodą.
- *************************************************************************** */
+ * IŠSIAIŠKINKITE metodų sudarymą, jų paskirtį.
+ * SUDARYKITE sąrašo peržiūros antišablono efektyvumo tyrimą.
+ * PASIRINKITE savo objektų klasę ir sudarykite jų generavimo metodą.
+ * **************************************************************************
+ */
 package edu.ktu.ds.lab1b.demo;
 
 import edu.ktu.ds.lab1b.util.Ks;
 import edu.ktu.ds.lab1b.util.LinkedList;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Locale;
@@ -19,11 +22,11 @@ import java.util.Random;
 
 public class SimpleBenchmark
 {
-
     Car[] cars;
     LinkedList<Car> carSeries = new LinkedList<>();
     Random rg = new Random();  // atsitiktinių generatorius
     int[] counts = {2_000, 4_000, 8_000, 16_000};
+
 //    pabandykite, gal Jūsų kompiuteris įveiks šiuos eksperimentus
 //    paieškokite ekstremalaus apkrovimo be burbuliuko metodo
 //    static int[] counts = {10_000, 20_000, 40_000, 80_000};
@@ -31,15 +34,17 @@ public class SimpleBenchmark
     void generateCars(int count)
     {
         String[][] makesAndModels = { // galimų automobilių markių ir jų modelių masyvas
-            {"Mazda", "121", "323", "626", "MX6"},
-            {"Ford", "Fiesta", "Escort", "Focus", "Sierra", "Mondeo"},
-            {"Saab", "92", "96"},
-            {"Honda", "Accord", "Civic", "Jazz"},
-            {"Renault", "Laguna", "Megane", "Twingo", "Scenic"},
-            {"Peugeot", "206", "207", "307"}
+                {"Mazda", "121", "323", "626", "MX6"},
+                {"Ford", "Fiesta", "Escort", "Focus", "Sierra", "Mondeo"},
+                {"Saab", "92", "96"},
+                {"Honda", "Accord", "Civic", "Jazz"},
+                {"Renault", "Laguna", "Megane", "Twingo", "Scenic"},
+                {"Peugeot", "206", "207", "307"}
         };
+
         cars = new Car[count];
         rg.setSeed(2017);
+
         for (int i = 0; i < count; i++)
         {
             int makeIndex = rg.nextInt(makesAndModels.length);        // markės indeksas  0..
@@ -49,8 +54,10 @@ public class SimpleBenchmark
                     6000 + rg.nextInt(222_000), // rida tarp 6000 ir 228000
                     1000 + rg.nextDouble() * 350_000); // kaina tarp 1000 ir 351_000
         }
+
         Collections.shuffle(Arrays.asList(cars));
         carSeries.clear();
+
         for (Car c : cars)
         {
             carSeries.add(c);
@@ -70,6 +77,7 @@ public class SimpleBenchmark
         System.gc();
         System.gc();
         long t2 = System.nanoTime();
+
 //  Greitaveikos bandymai ir laiko matavimai
         carSeries.sortSystem();
         long t3 = System.nanoTime();
@@ -90,12 +98,14 @@ public class SimpleBenchmark
         Ks.oun("memTotal = " + memTotal);
         Ks.oun("memTotal in kb = " + memTotal / 1024.0);
         Ks.oun("memTotal in mb = " + memTotal / 1024.0 / 1024.0);
+
         // Pasižiūrime kaip generuoja automobilius (20) vienetų)
         generateCars(20);
         for (Car c : carSeries)
         {
             Ks.oun(c);
         }
+
         Ks.oun("1 - Pasiruošimas tyrimui - duomenų generavimas");
         Ks.oun("2 - Pasiruošimas tyrimui - šiukšlių surinkimas");
         Ks.oun("3 - Rūšiavimas sisteminiu greitu būdu be Comparator");
@@ -103,6 +113,7 @@ public class SimpleBenchmark
         Ks.oun("5 - Rūšiavimas List burbuliuku be Comparator");
         Ks.oun("6 - Rūšiavimas List burbuliuku su Comparator");
         Ks.ouf("%6d %7d %7d %7d %7d %7d %7d \n", 0, 1, 2, 3, 4, 5, 6);
+
         for (int n : counts)
         {
             generateAndExecute(n);
