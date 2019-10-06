@@ -3,23 +3,22 @@ package edu.ktu.ds.lab1b.petrauskas;
 import edu.ktu.ds.lab1b.demo.SimpleBenchmark;
 import edu.ktu.ds.lab1b.util.Ks;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
 
 public class BenchmarkTest
 {
     private int[] counts = { 16, 64, 1024, 4096, 24_000, 100_000, 1_000_000 };
-    private ArrayList<Double> powList = new ArrayList<Double>();
-    private ArrayList<Double> productList = new ArrayList<Double>();
+    private LinkedList<Double> powList = new LinkedList<Double>();
+    private LinkedList<Double> productList = new LinkedList<Double>();
     private Random rnd = new Random(2017);
 
     private void run()
     {
         for(int count: counts)
         {
-            powList = new ArrayList<>();
-            productList = new ArrayList<>();
+            powList = new LinkedList<>();
+            productList = new LinkedList<>();
             testPower(count);
             testIndex(count);
         }
