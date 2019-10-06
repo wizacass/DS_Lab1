@@ -3,20 +3,18 @@ package edu.ktu.ds.lab1b.petrauskas;
 import edu.ktu.ds.lab1b.util.Ks;
 import edu.ktu.ds.lab1b.util.LinkedList;
 
-import java.util.Locale;
-
 public class PhoneTest
 {
-    private LinkedList<Phone> phones;
+    private LinkedList<Phone> allPhones;
 
     private PhoneTest()
     {
-        phones = new LinkedList<>();
+        allPhones = new LinkedList<>();
     }
 
     private void createPhones()
     {
-        phones.add(new Phone(
+        allPhones.add(new Phone(
                 "Samsung",
                 "Galaxy S8",
                 3000,
@@ -26,7 +24,7 @@ public class PhoneTest
                 true
         ));
 
-        phones.add(new Phone(
+        allPhones.add(new Phone(
                 "Samsung",
                 "Galaxy S10",
                 3400,
@@ -36,7 +34,7 @@ public class PhoneTest
                 true
         ));
 
-        phones.add(new Phone(
+        allPhones.add(new Phone(
                 "Apple",
                 "iPhone 11 Pro",
                 3046,
@@ -54,28 +52,45 @@ public class PhoneTest
         for (String phoneData:phoneInfos)
         {
             var ph = new Phone(phoneData);
-            if(ph.get_status() == true)
+            if(ph.parsedSuccessfully())
             {
-                phones.add(ph);
+                allPhones.add(ph);
             }
         }
     }
 
-    private void listPhones()
+    private void listPhones(LinkedList<Phone> phones)
     {
         for (Phone phone:phones)
         {
             Ks.oun(phone.toString());
         }
+        Ks.oun(" ");
+    }
+
+    private LinkedList<Phone> getPhonesWithHeadphoneJack()
+    {
+        var phones = new LinkedList<Phone>();
+
+        for (var phone: allPhones)
+        {
+            if(phone.getHasHeadphoneJack())
+            {
+                phones.add(phone);
+            }
+        }
+
+        return phones;
     }
 
     private void run()
     {
         createPhones();
-        listPhones();
-        phones.sortBubble();
-        Ks.oun(" ");
-        listPhones();
+        listPhones(allPhones);
+        allPhones.sortBubble();
+        listPhones(allPhones);
+        var phonesWithHeadphoneJack = getPhonesWithHeadphoneJack();
+        listPhones(phonesWithHeadphoneJack);
     }
 
     public static void main(String... args)

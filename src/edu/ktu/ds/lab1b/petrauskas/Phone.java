@@ -96,7 +96,7 @@ public class Phone implements Parsable<Phone>
         return _hasHeadphoneJack;
     }
 
-    public Boolean get_status()
+    public Boolean parsedSuccessfully()
     {
         return _status;
     }
@@ -162,7 +162,7 @@ public class Phone implements Parsable<Phone>
     @Override
     public String toString()
     {
-        if (this.get_status())
+        if (this.parsedSuccessfully())
         {
             return String.format("%s %s, %s, %s$, %dmAh, %sin, headphone jack: %s.",
                     this.getManufacturer(),
