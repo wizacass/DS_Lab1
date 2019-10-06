@@ -51,6 +51,9 @@ public class LinkedListTest
         Ks.oun(intList.add(15, 32) ? "32 added successfully." : "32 not added.");
         Ks.oun(intList.add(-5, 8) ? "8 added successfully." : "8 not added.");
 
+        intList.addLast(64);
+        Ks.oun("Added 64 to the end of the list.");
+
         int amount = rnd.nextInt(4);
         for (int i = 0; i < amount; i ++)
         {
@@ -59,7 +62,10 @@ public class LinkedListTest
             Ks.oun(String.format("Added %d to the end of the list.", number));
         }
 
+        intList.addLast(64);
+        Ks.oun("Added 64 to the end of the list.");
         Ks.oun("");
+
         printList("After adding the elements:");
     }
 
@@ -89,6 +95,8 @@ public class LinkedListTest
                 Ks.oun(String.format("%d at index %d set to %d.", oldVal, position, newVal));
             }
         }
+
+        Ks.oun("");
         printList("After setting:");
     }
 
@@ -97,7 +105,7 @@ public class LinkedListTest
         for (int i = 0; i < 3; i++)
         {
             boolean success = true;
-            int position = rnd.nextInt(16);
+            int position = rnd.nextInt(20);
 
             Integer removedValue = null;
             try
@@ -116,8 +124,34 @@ public class LinkedListTest
             }
         }
 
+        Ks.oun(intList.removeLastOccurrence(64) ? "64 removed from the list." : "64 does not exist in the list.");
+        Ks.oun(intList.removeLastOccurrence(100) ? "100 removed from the list." : "100 does not exist in the list.");
+
+        testRemoveRange(4, 6);
+        testRemoveRange(6, 4);
+        testRemoveRange(10, 20);
+
         Ks.oun("");
         printList("After removing:");
+    }
+
+    private void testRemoveRange(int from, int to)
+    {
+        boolean success = true;
+        try
+        {
+            intList.removeRange(from, to);
+        }
+        catch (Exception ex)
+        {
+            success = false;
+            Ks.ern(ex.getMessage());
+        }
+
+        if (success)
+        {
+            Ks.oun(String.format("Removed elements from index %d to %d.", from, to));
+        }
     }
 
     private void printList(String header)
