@@ -33,6 +33,79 @@ public class LinkedList<E extends Comparable<E>>
      */
     public LinkedList() { }
 
+    public void addLast(E e)
+    {
+        if(e == null)
+        {
+            return;
+        }
+
+        if(first == null)
+        {
+            first = new Node<>(e, first);
+            last = first;
+        }
+        else
+        {
+            var node = new Node<>(e, null);
+            last.next = node;
+            last = node;
+        }
+    }
+
+    public boolean removeLastOccurrence(E e)
+    {
+        if (e == null)
+        {
+            return false;
+        }
+
+        int index = -1;
+        int i = 0;
+        for (var currentNode = first; currentNode != null; currentNode = currentNode.next)
+        {
+            if(currentNode.element == e)
+            {
+                index = i;
+            }
+
+            i++;
+        }
+
+        if(index < 0)
+        {
+            return false;
+        }
+        else
+        {
+            var element = this.remove(index);
+            return element != null;
+        }
+    }
+
+    public void removeRange(int fromIndex, int toIndex)
+    {
+        if(fromIndex > toIndex)
+        {
+            throw new IllegalArgumentException("From index is greater than to index!");
+        }
+
+        if(fromIndex < 0)
+        {
+            throw new IllegalArgumentException("Index cannot be less than 0!");
+        }
+
+        if(toIndex > this.size)
+        {
+            throw new IndexOutOfBoundsException(String.format("List has only %d elements!", this.size));
+        }
+
+        for(int i = fromIndex; i < toIndex; i++)
+        {
+            this.remove(i);
+        }
+    }
+
     /**
      * metodas add įdeda elementą į sąrašo pabaigą
      *
