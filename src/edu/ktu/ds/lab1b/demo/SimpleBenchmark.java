@@ -22,11 +22,11 @@ import java.util.Random;
 
 public class SimpleBenchmark
 {
-
     Car[] cars;
     LinkedList<Car> carSeries = new LinkedList<>();
     Random rg = new Random();  // atsitiktinių generatorius
     int[] counts = {2_000, 4_000, 8_000, 16_000};
+
 //    pabandykite, gal Jūsų kompiuteris įveiks šiuos eksperimentus
 //    paieškokite ekstremalaus apkrovimo be burbuliuko metodo
 //    static int[] counts = {10_000, 20_000, 40_000, 80_000};
