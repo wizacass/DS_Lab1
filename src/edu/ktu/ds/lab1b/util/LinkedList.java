@@ -51,6 +51,7 @@ public class LinkedList<E extends Comparable<E>>
             last.next = node;
             last = node;
         }
+        this.size++;
     }
 
     public boolean removeLastOccurrence(E e)

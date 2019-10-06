@@ -1,5 +1,6 @@
 package edu.ktu.ds.lab1b.petrauskas;
 
+import edu.ktu.ds.lab1b.util.Ks;
 import edu.ktu.ds.lab1b.util.LinkedList;
 
 import java.util.Locale;
@@ -21,19 +22,51 @@ public class LinkedListTest
     {
         createList(rnd.nextInt(20));
 
-        System.out.println();
+        Ks.oun("");
         printList("Before sorting:");
 
-        // - Adding
-        System.out.println(intList.add(0, 16) ? "16 added successfully." : "16 not added.");
-        System.out.println(intList.add(3, 64) ? "64 added successfully." : "64 not added.");
-        System.out.println(intList.add(15, 32) ? "32 added successfully." : "32 not added.");
-        System.out.println(intList.add(-5, 8) ? "8 added successfully." : "8 not added.");
-        printList("After adding the elements:");
+        addElements();
+        setElements();
+        removeElements();
 
-        // - Setting
+        intList.sortBubble();
+        printList("After sorting:");
+    }
+
+    private void createList(int size)
+    {
+        for (int i = 0; i < size; i++)
+        {
+            Integer number = rnd.nextInt(2048);
+            Ks.oun(String.format("Added %d to the list.", number));
+
+            intList.add(number);
+        }
+    }
+
+    private void addElements()
+    {
+        Ks.oun(intList.add(0, 16) ? "16 added successfully." : "16 not added.");
+        Ks.oun(intList.add(3, 64) ? "64 added successfully." : "64 not added.");
+        Ks.oun(intList.add(15, 32) ? "32 added successfully." : "32 not added.");
+        Ks.oun(intList.add(-5, 8) ? "8 added successfully." : "8 not added.");
+
+        int amount = rnd.nextInt(4);
+        for (int i = 0; i < amount; i ++)
+        {
+            Integer number = rnd.nextInt(128);
+            intList.addLast(number);
+            Ks.oun(String.format("Added %d to the end of the list.", number));
+        }
+
+        Ks.oun("");
+        printList("After adding the elements:");
+    }
+
+    private void setElements()
+    {
         Integer oldVal = intList.set(0, 1);
-        System.out.printf("%d set at index 0 set to 1.%n", oldVal);
+        Ks.oun(String.format("%d set at index 0 set to 1.", oldVal));
 
         for (int i = 0; i < 5; i ++)
         {
@@ -47,22 +80,24 @@ public class LinkedListTest
             }
             catch (Exception ex)
             {
-                System.out.printf("Cannot set index %d. %s%n", position, ex.getMessage());
+                Ks.ern(String.format("Cannot set index %d. %s", position, ex.getMessage()));
                 success = false;
             }
 
             if (success)
             {
-                System.out.printf("%d at index %d set to %d.%n", oldVal, position, newVal);
+                Ks.oun(String.format("%d at index %d set to %d.", oldVal, position, newVal));
             }
         }
         printList("After setting:");
+    }
 
-        // - Removing
+    private void removeElements()
+    {
         for (int i = 0; i < 3; i++)
         {
             boolean success = true;
-            int position = rnd.nextInt(20);
+            int position = rnd.nextInt(16);
 
             Integer removedValue = null;
             try
@@ -71,40 +106,31 @@ public class LinkedListTest
             }
             catch (Exception ex)
             {
-                System.out.printf("Cannot remove index %d. %s%n", position, ex.getMessage());
+                Ks.ern(String.format("Cannot remove index %d. %s", position, ex.getMessage()));
                 success = false;
             }
 
             if (success)
             {
-                System.out.printf("Removed value %d at index %d.%n", removedValue, position);
+                Ks.oun(String.format("Removed value %d at index %d.", removedValue, position));
             }
         }
+
+        Ks.oun("");
         printList("After removing:");
-
-        intList.sortBubble();
-        printList("After sorting:");
-    }
-
-    private void createList(int size)
-    {
-        for (int i = 0; i < size; i++)
-        {
-            Integer number = rnd.nextInt(2048);
-            System.out.printf("Added %d to the list.%n", number);
-
-            intList.add(number);
-        }
     }
 
     private void printList(String header)
     {
-        System.out.printf("%n%s%n", header);
+        Ks.oun(header);
+        var sb = new StringBuilder();
         for (Integer data : intList)
         {
-            System.out.printf("%s ", data.toString());
+            sb.append(String.format("%s ", data.toString()));
         }
-        System.out.printf("%nTotal elements: %d.%n%n", intList.size());
+        Ks.oun(sb.toString());
+        Ks.oun(String.format("Total elements: %d.", intList.size()));
+        Ks.oun("");
     }
 
     public static void main(String... args)
@@ -113,6 +139,6 @@ public class LinkedListTest
         var test = new LinkedListTest();
         test.run();
 
-        System.out.println("\nDone!");
+        Ks.oun("Done!");
     }
 }
